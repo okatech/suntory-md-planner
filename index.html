@@ -12,7 +12,6 @@
       --teal-deep:  #1a7d9a;
       --teal-light: #e0f7fc;
       --teal-pale:  #f0fbfe;
-      --white:      #ffffff;
       --bg:         #f4fafc;
       --card:       #ffffff;
       --border:     #cde8f0;
@@ -23,7 +22,6 @@
       --danger:     #d42b2b;
       --radius:     12px;
       --radius-sm:  8px;
-      --shadow:     0 2px 16px rgba(27,125,154,.12);
       --shadow-sm:  0 1px 6px rgba(27,125,154,.08);
       --nav-h:      64px;
       --header-h:   56px;
@@ -36,24 +34,20 @@
       min-height: 100%; padding-bottom: calc(var(--nav-h) + env(safe-area-inset-bottom));
     }
 
-    /* ─── Top Header ─────────────────────────── */
+    /* ─── Header ─────────────────────────────── */
     header {
       position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-      height: var(--header-h);
-      background: var(--teal);
+      height: var(--header-h); background: var(--teal);
       display: flex; align-items: center; justify-content: space-between;
-      padding: 0 16px;
-      box-shadow: 0 2px 12px rgba(0,0,0,.15);
+      padding: 0 16px; box-shadow: 0 2px 12px rgba(0,0,0,.15);
     }
     .header-logo { display: flex; align-items: center; gap: 10px; }
     .logo-badge {
       width: 34px; height: 34px; background: white; border-radius: 8px;
       display: flex; align-items: center; justify-content: center;
-      font-size: 18px; font-weight: 900; color: var(--teal-deep);
-      letter-spacing: -1px; flex-shrink: 0;
+      font-size: 18px; font-weight: 900; color: var(--teal-deep); flex-shrink: 0;
     }
-    .logo-texts { line-height: 1.2; }
-    .logo-texts .logo-main { color: #fff; font-size: 14px; font-weight: 800; }
+    .logo-texts .logo-main { color: #fff; font-size: 14px; font-weight: 800; line-height: 1.2; }
     .logo-texts .logo-sub  { color: rgba(255,255,255,.75); font-size: 10px; }
     .header-right { display: flex; align-items: center; gap: 10px; }
     .avatar-btn {
@@ -63,8 +57,7 @@
       display: flex; align-items: center; justify-content: center; cursor: pointer;
     }
     .notif-btn {
-      width: 34px; height: 34px; border-radius: 50%;
-      background: rgba(255,255,255,.15);
+      width: 34px; height: 34px; border-radius: 50%; background: rgba(255,255,255,.15);
       display: flex; align-items: center; justify-content: center;
       cursor: pointer; font-size: 16px; position: relative;
     }
@@ -74,7 +67,7 @@
       border: 1.5px solid var(--teal);
     }
 
-    /* ─── Main Scroll Area ───────────────────── */
+    /* ─── Main / Pages ───────────────────────── */
     #main { margin-top: var(--header-h); }
     .page { display: none; padding: 16px 16px 8px; }
     .page.active { display: block; }
@@ -91,81 +84,57 @@
     .nav-item {
       flex: 1; display: flex; flex-direction: column; align-items: center;
       justify-content: center; gap: 3px; cursor: pointer;
-      padding: 6px 0; color: var(--text-sub); font-size: 10px;
-      font-weight: 600; transition: color .15s;
-      -webkit-tap-highlight-color: transparent;
+      padding: 6px 0; color: var(--text-sub); font-size: 10px; font-weight: 600;
     }
     .nav-item .nav-icon { font-size: 20px; line-height: 1; }
     .nav-item.active { color: var(--teal-dark); }
-    .nav-item.active .nav-icon-wrap {
-      background: var(--teal-light); border-radius: 12px; padding: 4px 14px;
-    }
+    .nav-item.active .nav-icon-wrap { background: var(--teal-light); border-radius: 12px; padding: 4px 14px; }
 
     /* ─── Section Header ─────────────────────── */
-    .section-header {
-      display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;
-    }
-    .section-header h2 { font-size: 15px; font-weight: 800; color: var(--text); }
+    .section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+    .section-header h2 { font-size: 15px; font-weight: 800; }
     .see-all { font-size: 12px; color: var(--teal-dark); font-weight: 700; cursor: pointer; }
 
     /* ─── KPI Strip ──────────────────────────── */
     .kpi-strip {
       display: flex; gap: 10px; overflow-x: auto; margin-bottom: 16px;
-      -webkit-overflow-scrolling: touch; scrollbar-width: none;
-      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch; scrollbar-width: none; scroll-snap-type: x mandatory;
     }
     .kpi-strip::-webkit-scrollbar { display: none; }
     .kpi-chip {
-      flex-shrink: 0; scroll-snap-align: start;
-      background: var(--card); border-radius: var(--radius);
-      padding: 14px 18px; min-width: 130px;
+      flex-shrink: 0; scroll-snap-align: start; background: var(--card);
+      border-radius: var(--radius); padding: 14px 18px; min-width: 130px;
       box-shadow: var(--shadow-sm); border-top: 3px solid var(--teal);
     }
     .kpi-chip.gold   { border-top-color: #d4a017; }
     .kpi-chip.green  { border-top-color: var(--success); }
     .kpi-chip.danger { border-top-color: var(--danger); }
     .kpi-chip .k-label { font-size: 10.5px; color: var(--text-sub); font-weight: 700; margin-bottom: 6px; }
-    .kpi-chip .k-val   { font-size: 26px; font-weight: 900; color: var(--text); line-height: 1; }
+    .kpi-chip .k-val   { font-size: 26px; font-weight: 900; line-height: 1; }
     .kpi-chip .k-val span { font-size: 13px; }
     .kpi-chip .k-sub   { font-size: 10px; color: var(--text-sub); margin-top: 4px; }
 
     /* ─── Cards ──────────────────────────────── */
-    .card {
-      background: var(--card); border-radius: var(--radius);
-      box-shadow: var(--shadow-sm); margin-bottom: 14px; overflow: hidden;
-    }
-    .card-head {
-      padding: 14px 16px; border-bottom: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: space-between;
-    }
-    .card-head h3 { font-size: 14px; font-weight: 800; color: var(--text); }
+    .card { background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow-sm); margin-bottom: 14px; overflow: hidden; }
+    .card-head { padding: 14px 16px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+    .card-head h3 { font-size: 14px; font-weight: 800; }
     .card-body { padding: 14px 16px; }
 
     /* ─── Meeting Row ────────────────────────── */
-    .meeting-row {
-      display: flex; align-items: flex-start; gap: 12px;
-      padding: 12px 0; border-bottom: 1px solid var(--border);
-    }
+    .meeting-row { display: flex; align-items: flex-start; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--border); }
     .meeting-row:last-child { border-bottom: none; }
-    .meeting-date-box {
-      flex-shrink: 0; width: 44px; text-align: center;
-      background: var(--teal-light); border-radius: var(--radius-sm); padding: 6px 4px;
-    }
+    .meeting-date-box { flex-shrink: 0; width: 44px; text-align: center; background: var(--teal-light); border-radius: var(--radius-sm); padding: 6px 4px; }
     .meeting-date-box .m-month { font-size: 9px; font-weight: 700; color: var(--teal-dark); }
     .meeting-date-box .m-day   { font-size: 22px; font-weight: 900; color: var(--teal-deep); line-height: 1; }
     .meeting-date-box .m-dow   { font-size: 9px; color: var(--text-sub); }
     .meeting-info { flex: 1; min-width: 0; }
-    .meeting-info .m-name   { font-size: 13.5px; font-weight: 800; color: var(--text);
-      white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .meeting-info .m-name   { font-size: 13.5px; font-weight: 800; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .meeting-info .m-detail { font-size: 11.5px; color: var(--text-sub); margin-top: 2px; }
     .meeting-info .m-badges { display: flex; gap: 5px; margin-top: 6px; flex-wrap: wrap; }
     .meeting-action { flex-shrink: 0; }
 
     /* ─── Badges ─────────────────────────────── */
-    .badge {
-      display: inline-flex; align-items: center; gap: 3px;
-      padding: 3px 8px; border-radius: 20px; font-size: 10.5px; font-weight: 700;
-    }
+    .badge { display: inline-flex; align-items: center; gap: 3px; padding: 3px 8px; border-radius: 20px; font-size: 10.5px; font-weight: 700; }
     .badge-teal  { background: var(--teal-light); color: var(--teal-deep); }
     .badge-gold  { background: #fff8e1; color: var(--warn); }
     .badge-green { background: #e6f4ed; color: var(--success); }
@@ -173,73 +142,48 @@
     .badge-gray  { background: #f0f4f6; color: var(--text-sub); }
 
     /* ─── Buttons ────────────────────────────── */
-    .btn {
-      display: inline-flex; align-items: center; justify-content: center; gap: 6px;
-      padding: 10px 20px; border-radius: var(--radius-sm); font-size: 14px;
-      font-weight: 700; cursor: pointer; border: none; font-family: inherit;
-      transition: all .15s; text-decoration: none; letter-spacing: .2px;
-    }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 10px 20px; border-radius: var(--radius-sm); font-size: 14px; font-weight: 700; cursor: pointer; border: none; font-family: inherit; transition: all .15s; }
     .btn-primary { background: var(--teal); color: #fff; }
     .btn-primary:active { background: var(--teal-dark); }
     .btn-dark    { background: var(--teal-deep); color: #fff; }
     .btn-dark:active { opacity: .85; }
     .btn-outline { background: transparent; border: 1.5px solid var(--teal); color: var(--teal-dark); }
     .btn-outline:active { background: var(--teal-light); }
+    .btn-danger  { background: var(--danger); color: #fff; }
     .btn-full    { width: 100%; }
     .btn-sm      { padding: 7px 14px; font-size: 12px; }
-
-    /* ─── AI Button ──────────────────────────── */
     .btn-ai {
       background: linear-gradient(135deg, var(--teal) 0%, var(--teal-deep) 100%);
       color: #fff; border-radius: var(--radius); padding: 14px 20px;
-      font-size: 15px; font-weight: 800; width: 100%;
-      border: none; cursor: pointer; font-family: inherit;
+      font-size: 15px; font-weight: 800; width: 100%; border: none;
+      cursor: pointer; font-family: inherit;
       box-shadow: 0 4px 16px rgba(91,194,220,.40); transition: all .2s;
     }
     .btn-ai:active { transform: scale(.98); opacity: .9; }
 
     /* ─── Forms ──────────────────────────────── */
     .form-group { margin-bottom: 14px; }
-    label { display: block; font-size: 12px; font-weight: 800;
-      color: var(--text); margin-bottom: 5px; letter-spacing: .2px; }
+    label { display: block; font-size: 12px; font-weight: 800; color: var(--text); margin-bottom: 5px; letter-spacing: .2px; }
     label .req { color: var(--danger); }
     input, select, textarea {
       width: 100%; border: 1.5px solid var(--border); border-radius: var(--radius-sm);
       padding: 11px 14px; font-size: 15px; color: var(--text);
-      background: #fff; font-family: inherit; appearance: none;
-      -webkit-appearance: none; transition: border-color .15s;
+      background: #fff; font-family: inherit; appearance: none; -webkit-appearance: none; transition: border-color .15s;
     }
     select {
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%234a6b7a' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
       background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px;
     }
-    input:focus, select:focus, textarea:focus {
-      outline: none; border-color: var(--teal); box-shadow: 0 0 0 3px rgba(91,194,220,.18);
-    }
+    input:focus, select:focus, textarea:focus { outline: none; border-color: var(--teal); box-shadow: 0 0 0 3px rgba(91,194,220,.18); }
     textarea { resize: vertical; min-height: 80px; }
-    .form-section-title {
-      font-size: 12px; font-weight: 900; color: var(--teal-deep);
-      letter-spacing: .8px; text-transform: uppercase;
-      margin: 18px 0 12px; padding-left: 10px; border-left: 3px solid var(--teal);
-    }
+    .form-section-title { font-size: 12px; font-weight: 900; color: var(--teal-deep); letter-spacing: .8px; text-transform: uppercase; margin: 18px 0 12px; padding-left: 10px; border-left: 3px solid var(--teal); }
 
     /* ─── Stepper ────────────────────────────── */
-    .stepper {
-      display: flex; align-items: center; margin-bottom: 18px;
-      background: var(--card); border-radius: var(--radius); padding: 14px;
-      box-shadow: var(--shadow-sm);
-    }
+    .stepper { display: flex; align-items: center; margin-bottom: 18px; background: var(--card); border-radius: var(--radius); padding: 14px; box-shadow: var(--shadow-sm); }
     .step { flex: 1; display: flex; flex-direction: column; align-items: center; position: relative; }
-    .step:not(:last-child)::after {
-      content: ''; position: absolute; top: 13px; left: 60%;
-      width: 80%; height: 2px; background: var(--border); z-index: 0;
-    }
+    .step:not(:last-child)::after { content: ''; position: absolute; top: 13px; left: 60%; width: 80%; height: 2px; background: var(--border); z-index: 0; }
     .step.done:not(:last-child)::after { background: var(--teal); }
-    .step-dot {
-      width: 26px; height: 26px; border-radius: 50%; z-index: 1; position: relative;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 11px; font-weight: 800; background: var(--border); color: var(--text-sub);
-    }
+    .step-dot { width: 26px; height: 26px; border-radius: 50%; z-index: 1; position: relative; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; background: var(--border); color: var(--text-sub); }
     .step.done   .step-dot { background: var(--teal); color: #fff; }
     .step.active .step-dot { background: var(--teal-deep); color: #fff; }
     .step-label { font-size: 9px; color: var(--text-sub); margin-top: 5px; text-align: center; line-height: 1.3; }
@@ -255,79 +199,63 @@
       display: flex; align-items: center; justify-content: space-between;
     }
     .ai-header-bar h3 { color: #fff; font-size: 14px; font-weight: 800; }
-    .ai-powered-tag {
-      background: rgba(255,255,255,.2); color: #fff; font-size: 10px;
-      padding: 3px 10px; border-radius: 20px; font-weight: 700;
-    }
-    .ai-body {
-      background: #fff; border: 1.5px solid var(--teal); border-top: none;
-      border-radius: 0 0 var(--radius) var(--radius); padding: 16px;
-    }
+    .ai-powered-tag { background: rgba(255,255,255,.2); color: #fff; font-size: 10px; padding: 3px 10px; border-radius: 20px; font-weight: 700; }
+    .ai-body { background: #fff; border: 1.5px solid var(--teal); border-top: none; border-radius: 0 0 var(--radius) var(--radius); padding: 16px; }
     .loading-line { height: 3px; background: var(--border); border-radius: 3px; margin-bottom: 16px; overflow: hidden; }
     .loading-fill { height: 100%; width: 0; background: linear-gradient(90deg, var(--teal), var(--teal-deep)); transition: width 1.4s ease; border-radius: 3px; }
-    .strategy-block {
-      background: var(--teal-pale); border-left: 3px solid var(--teal);
-      border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 12px 14px; margin-bottom: 12px;
-    }
+    .strategy-block { background: var(--teal-pale); border-left: 3px solid var(--teal); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 12px 14px; margin-bottom: 12px; }
     .strategy-block.gold  { background: #fffbf0; border-left-color: #d4a017; }
     .strategy-block.green { background: #f0faf5; border-left-color: var(--success); }
     .strategy-block.red   { background: #fff5f5; border-left-color: var(--danger); }
-    .strategy-block h4 {
-      font-size: 10.5px; font-weight: 900; color: var(--teal-deep);
-      letter-spacing: .5px; text-transform: uppercase; margin-bottom: 8px;
-    }
+    .strategy-block h4 { font-size: 10.5px; font-weight: 900; color: var(--teal-deep); letter-spacing: .5px; text-transform: uppercase; margin-bottom: 8px; }
     .strategy-block.gold  h4 { color: var(--warn); }
     .strategy-block.green h4 { color: var(--success); }
     .strategy-block.red   h4 { color: var(--danger); }
-    .strategy-block p, .strategy-block li { font-size: 13px; line-height: 1.75; color: var(--text); }
+    .strategy-block p, .strategy-block li { font-size: 13px; line-height: 1.75; }
     .strategy-block ul { padding-left: 16px; }
     .strategy-block li { margin-bottom: 3px; }
 
     /* ─── Alert ──────────────────────────────── */
-    .alert {
-      padding: 12px 14px; border-radius: var(--radius-sm); font-size: 13px;
-      display: flex; gap: 10px; margin-bottom: 12px; line-height: 1.6;
-    }
+    .alert { padding: 12px 14px; border-radius: var(--radius-sm); font-size: 13px; display: flex; gap: 10px; margin-bottom: 12px; line-height: 1.6; }
     .alert-teal { background: var(--teal-light); border-left: 3px solid var(--teal); color: var(--teal-deep); }
     .alert-gold { background: #fff8e1; border-left: 3px solid #d4a017; color: var(--warn); }
-    .alert-icon { font-size: 15px; flex-shrink: 0; margin-top: 1px; }
 
     /* ─── Case Card ──────────────────────────── */
-    .case-card {
-      background: var(--card); border: 1.5px solid var(--border);
-      border-radius: var(--radius); padding: 14px; margin-bottom: 10px;
-      box-shadow: var(--shadow-sm);
-    }
+    .case-card { background: var(--card); border: 1.5px solid var(--border); border-radius: var(--radius); padding: 14px; margin-bottom: 10px; box-shadow: var(--shadow-sm); }
     .case-card .case-top { display: flex; gap: 6px; align-items: center; margin-bottom: 6px; flex-wrap: wrap; }
-    .case-card h4 { font-size: 13.5px; font-weight: 800; color: var(--text); margin-bottom: 4px; }
+    .case-card h4 { font-size: 13.5px; font-weight: 800; margin-bottom: 4px; }
     .case-card p  { font-size: 12.5px; color: var(--text-sub); line-height: 1.65; }
     .case-metrics { display: flex; gap: 12px; margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border); flex-wrap: wrap; }
     .metric-item  { font-size: 11px; color: var(--text-sub); }
     .metric-item strong { display: block; font-size: 14px; color: var(--teal-deep); }
+    .case-card.hidden { display: none; }
 
     /* ─── Search Bar ─────────────────────────── */
     .search-wrap { position: relative; margin-bottom: 12px; }
-    .search-wrap .search-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); font-size: 16px; }
+    .search-wrap .s-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); font-size: 16px; pointer-events: none; }
     .search-wrap input { padding-left: 40px; background: var(--card); }
 
+    /* ─── Filter Pills ───────────────────────── */
+    .filter-pills { display: flex; gap: 8px; margin-bottom: 14px; overflow-x: auto; scrollbar-width: none; }
+    .filter-pills::-webkit-scrollbar { display: none; }
+    .pill { flex-shrink: 0; padding: 7px 14px; border-radius: 20px; font-size: 12px; font-weight: 700; cursor: pointer; border: 1.5px solid var(--border); background: #fff; color: var(--text-sub); transition: all .15s; }
+    .pill.active { background: var(--teal); color: #fff; border-color: var(--teal); }
+
+    /* ─── No Results ─────────────────────────── */
+    .no-results { text-align: center; padding: 40px 20px; color: var(--text-sub); font-size: 14px; display: none; }
+    .no-results .nr-icon { font-size: 36px; margin-bottom: 10px; }
+
     /* ─── Insight Card ───────────────────────── */
-    .insight-card {
-      background: var(--card); border-radius: var(--radius);
-      padding: 14px; box-shadow: var(--shadow-sm); margin-bottom: 10px;
-      border-left: 4px solid var(--teal); display: flex; gap: 12px; align-items: flex-start;
-    }
+    .insight-card { background: var(--card); border-radius: var(--radius); padding: 14px; box-shadow: var(--shadow-sm); margin-bottom: 10px; border-left: 4px solid var(--teal); display: flex; gap: 12px; }
     .insight-card.gold { border-left-color: #d4a017; }
     .insight-icon { font-size: 22px; flex-shrink: 0; }
-    .insight-text .i-title { font-size: 13px; font-weight: 800; color: var(--text); margin-bottom: 3px; }
+    .insight-text .i-title { font-size: 13px; font-weight: 800; margin-bottom: 3px; }
     .insight-text .i-body  { font-size: 12px; color: var(--text-sub); line-height: 1.6; }
     .insight-text .i-meta  { font-size: 10.5px; color: var(--teal-dark); margin-top: 5px; font-weight: 700; }
 
     /* ─── Report Row ─────────────────────────── */
-    .report-row {
-      background: var(--card); border-radius: var(--radius);
-      padding: 14px; margin-bottom: 10px; box-shadow: var(--shadow-sm);
-    }
-    .report-row .r-title { font-size: 13.5px; font-weight: 800; color: var(--text); margin-bottom: 4px; }
+    .report-row { background: var(--card); border-radius: var(--radius); padding: 14px; margin-bottom: 10px; box-shadow: var(--shadow-sm); }
+    .report-row .r-title { font-size: 13.5px; font-weight: 800; margin-bottom: 4px; }
     .report-row .r-sub   { font-size: 12px; color: var(--text-sub); margin-bottom: 8px; }
     .report-row .r-meta  { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
 
@@ -335,13 +263,96 @@
     .divider { border: none; border-top: 1px solid var(--border); margin: 14px 0; }
     .bottom-action { display: flex; gap: 10px; margin-top: 16px; }
     .bottom-action .btn { flex: 1; }
-    .spinner {
-      display: flex; flex-direction: column; align-items: center;
-      gap: 10px; padding: 40px; color: var(--text-sub);
-    }
+    .spinner { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 40px; color: var(--text-sub); }
     .spinner .spin-icon { font-size: 32px; animation: spin 1s linear infinite; }
     @keyframes spin { to { transform: rotate(360deg); } }
     .spin-text { font-size: 13px; }
+
+    /* ════════════════════════════════════════════
+       MODAL
+       ════════════════════════════════════════════ */
+    .modal-overlay {
+      position: fixed; inset: 0; z-index: 500;
+      background: rgba(0,0,0,.45);
+      display: flex; align-items: flex-end;
+      opacity: 0; pointer-events: none; transition: opacity .25s;
+    }
+    .modal-overlay.open { opacity: 1; pointer-events: all; }
+    .modal-sheet {
+      width: 100%; background: #fff;
+      border-radius: 20px 20px 0 0;
+      padding: 0 0 env(safe-area-inset-bottom);
+      transform: translateY(100%); transition: transform .3s cubic-bezier(.32,0,.15,1);
+      max-height: 92vh; overflow-y: auto;
+    }
+    .modal-overlay.open .modal-sheet { transform: translateY(0); }
+    .modal-drag { width: 40px; height: 4px; background: var(--border); border-radius: 4px; margin: 12px auto 0; }
+    .modal-header { padding: 14px 20px 12px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+    .modal-header h2 { font-size: 16px; font-weight: 800; }
+    .modal-close { width: 32px; height: 32px; border-radius: 50%; background: var(--bg); border: none; cursor: pointer; font-size: 18px; display: flex; align-items: center; justify-content: center; }
+    .modal-body { padding: 20px; }
+    .modal-footer { padding: 12px 20px; border-top: 1px solid var(--border); display: flex; gap: 10px; }
+    .modal-footer .btn { flex: 1; }
+
+    /* ════════════════════════════════════════════
+       PDF / PRINT PROPOSAL
+       ════════════════════════════════════════════ */
+    #pdf-overlay {
+      position: fixed; inset: 0; z-index: 600;
+      background: rgba(10,30,40,.6); backdrop-filter: blur(4px);
+      display: none; align-items: center; justify-content: center; padding: 16px;
+    }
+    #pdf-overlay.open { display: flex; }
+    #pdf-container {
+      background: #fff; width: 100%; max-width: 680px; max-height: 90vh;
+      border-radius: 16px; overflow-y: auto; position: relative;
+    }
+    #pdf-toolbar {
+      position: sticky; top: 0; background: var(--teal-deep); color: #fff;
+      padding: 12px 16px; display: flex; align-items: center; justify-content: space-between;
+      border-radius: 16px 16px 0 0;
+    }
+    #pdf-toolbar h3 { font-size: 14px; font-weight: 800; }
+    #pdf-toolbar-btns { display: flex; gap: 8px; }
+
+    /* The actual printable proposal content */
+    #pdf-doc {
+      padding: 40px 48px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+    .pdf-cover { text-align: center; padding: 32px 0 40px; border-bottom: 2px solid #5bc2dc; margin-bottom: 32px; }
+    .pdf-cover .pdf-logo { font-size: 40px; font-weight: 900; color: #5bc2dc; letter-spacing: -2px; margin-bottom: 4px; }
+    .pdf-cover .pdf-logo span { color: #1a7d9a; }
+    .pdf-cover .pdf-tag { font-size: 11px; color: #4a6b7a; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 28px; }
+    .pdf-cover h1 { font-size: 22px; font-weight: 900; color: #0d1f27; margin-bottom: 8px; }
+    .pdf-cover .pdf-meta { font-size: 12px; color: #4a6b7a; line-height: 2; }
+    .pdf-cover .pdf-meta strong { color: #0d1f27; }
+    .pdf-section { margin-bottom: 28px; }
+    .pdf-section-title {
+      font-size: 11px; font-weight: 900; letter-spacing: 1.5px; text-transform: uppercase;
+      color: #1a7d9a; padding-bottom: 6px; border-bottom: 2px solid #5bc2dc; margin-bottom: 14px;
+    }
+    .pdf-block { background: #f0fbfe; border-left: 3px solid #5bc2dc; border-radius: 0 6px 6px 0; padding: 12px 16px; margin-bottom: 10px; }
+    .pdf-block.gold  { background: #fffbf0; border-left-color: #d4a017; }
+    .pdf-block.green { background: #f0faf5; border-left-color: #0f8a4b; }
+    .pdf-block.red   { background: #fff5f5; border-left-color: #d42b2b; }
+    .pdf-block h4 { font-size: 10px; font-weight: 900; text-transform: uppercase; letter-spacing: .6px; color: #1a7d9a; margin-bottom: 8px; }
+    .pdf-block.gold  h4 { color: #c47a00; }
+    .pdf-block.green h4 { color: #0f8a4b; }
+    .pdf-block.red   h4 { color: #d42b2b; }
+    .pdf-block p, .pdf-block li { font-size: 13px; line-height: 1.75; color: #0d1f27; }
+    .pdf-block ul { padding-left: 18px; }
+    .pdf-block li { margin-bottom: 4px; }
+    .pdf-footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid #cde8f0; font-size: 11px; color: #4a6b7a; display: flex; justify-content: space-between; }
+
+    @media print {
+      body > *:not(#pdf-doc) { display: none !important; }
+      #pdf-overlay, #pdf-toolbar { display: none !important; }
+      #pdf-doc {
+        display: block !important; position: fixed; inset: 0;
+        padding: 32px 48px; max-height: none;
+      }
+    }
   </style>
 </head>
 <body>
@@ -367,41 +378,19 @@
   <!--  PAGE: DASHBOARD                      -->
   <!-- ══════════════════════════════════════ -->
   <div class="page active" id="page-dashboard">
-
-    <!-- KPI Strip -->
     <div class="kpi-strip">
-      <div class="kpi-chip">
-        <div class="k-label">Meetings This Month</div>
-        <div class="k-val">12</div>
-        <div class="k-sub">+2 vs last month</div>
-      </div>
-      <div class="kpi-chip gold">
-        <div class="k-label">AI Drafts Generated</div>
-        <div class="k-val">8</div>
-        <div class="k-sub">75% adoption rate</div>
-      </div>
-      <div class="kpi-chip green">
-        <div class="k-label">Deal Close Rate</div>
-        <div class="k-val">68<span>%</span></div>
-        <div class="k-sub">+12pt vs last qtr</div>
-      </div>
-      <div class="kpi-chip danger">
-        <div class="k-label">Follow-up Needed</div>
-        <div class="k-val">3</div>
-        <div class="k-sub">Action required</div>
-      </div>
+      <div class="kpi-chip"><div class="k-label">Meetings This Month</div><div class="k-val">12</div><div class="k-sub">+2 vs last month</div></div>
+      <div class="kpi-chip gold"><div class="k-label">AI Drafts Generated</div><div class="k-val">8</div><div class="k-sub">75% adoption rate</div></div>
+      <div class="kpi-chip green"><div class="k-label">Deal Close Rate</div><div class="k-val">68<span>%</span></div><div class="k-sub">+12pt vs last qtr</div></div>
+      <div class="kpi-chip danger"><div class="k-label">Follow-up Needed</div><div class="k-val">3</div><div class="k-sub">Action required</div></div>
     </div>
 
-    <!-- DS Insights -->
-    <div class="section-header">
-      <h2>📢 DS Insights</h2>
-      <span class="see-all" onclick="showPage('analytics')">View all</span>
-    </div>
+    <div class="section-header"><h2>📢 DS Insights</h2><span class="see-all" onclick="showPage('analytics')">View all</span></div>
     <div class="insight-card">
       <div class="insight-icon">📈</div>
       <div class="insight-text">
-        <div class="i-title">Kanto RTD Category: Low-ABV Surge</div>
-        <div class="i-body">Sub-3% RTD products up +19% YoY, led by Gen Z. Recommend using as a key pitch hook in upcoming meetings.</div>
+        <div class="i-title">Kanto RTD: Low-ABV Surge</div>
+        <div class="i-body">Sub-3% RTD up +19% YoY, led by Gen Z. Recommend using as a key pitch hook.</div>
         <div class="i-meta">DS: A. Ito · Oct 15</div>
       </div>
     </div>
@@ -414,116 +403,61 @@
       </div>
     </div>
 
-    <!-- Upcoming Meetings -->
-    <div class="section-header" style="margin-top:4px;">
-      <h2>📅 Upcoming Meetings</h2>
-      <span class="see-all">Calendar</span>
-    </div>
+    <div class="section-header" style="margin-top:4px;"><h2>📅 Upcoming Meetings</h2><span class="see-all">Calendar</span></div>
     <div class="card">
       <div class="card-body" style="padding:4px 14px;">
-
         <div class="meeting-row">
-          <div class="meeting-date-box">
-            <div class="m-month">OCT</div>
-            <div class="m-day">22</div>
-            <div class="m-dow">Wed</div>
-          </div>
+          <div class="meeting-date-box"><div class="m-month">OCT</div><div class="m-day">22</div><div class="m-dow">Wed</div></div>
           <div class="meeting-info">
             <div class="m-name">Aeon Retail</div>
             <div class="m-detail">Kanto HQ · Beer &amp; RTD</div>
-            <div class="m-badges">
-              <span class="badge badge-gold">🔄 In Prep</span>
-              <span class="badge badge-teal">K. Tanaka MD</span>
-            </div>
+            <div class="m-badges"><span class="badge badge-gold">🔄 In Prep</span><span class="badge badge-teal">K. Tanaka MD</span></div>
           </div>
-          <div class="meeting-action">
-            <button class="btn btn-primary btn-sm" onclick="loadDemo()">AI Draft</button>
-          </div>
+          <div class="meeting-action"><button class="btn btn-primary btn-sm" onclick="loadDemo()">AI Draft</button></div>
         </div>
-
         <div class="meeting-row">
-          <div class="meeting-date-box">
-            <div class="m-month">OCT</div>
-            <div class="m-day">24</div>
-            <div class="m-dow">Fri</div>
-          </div>
+          <div class="meeting-date-box"><div class="m-month">OCT</div><div class="m-day">24</div><div class="m-dow">Fri</div></div>
           <div class="meeting-info">
             <div class="m-name">Welcia Holdings</div>
             <div class="m-detail">Greater Tokyo · Health Beverages</div>
-            <div class="m-badges">
-              <span class="badge badge-green">✅ Strategy Confirmed</span>
-            </div>
+            <div class="m-badges"><span class="badge badge-green">✅ Strategy Confirmed</span></div>
           </div>
-          <div class="meeting-action">
-            <button class="btn btn-outline btn-sm">View</button>
-          </div>
+          <div class="meeting-action"><button class="btn btn-outline btn-sm">View</button></div>
         </div>
-
         <div class="meeting-row">
-          <div class="meeting-date-box">
-            <div class="m-month">OCT</div>
-            <div class="m-day">28</div>
-            <div class="m-dow">Tue</div>
-          </div>
+          <div class="meeting-date-box"><div class="m-month">OCT</div><div class="m-day">28</div><div class="m-dow">Tue</div></div>
           <div class="meeting-info">
             <div class="m-name">7-Eleven Japan</div>
-            <div class="m-detail">Category MD Dept · Whisky</div>
-            <div class="m-badges">
-              <span class="badge badge-teal">📊 DS Analysis Pending</span>
-            </div>
+            <div class="m-detail">Category MD · Whisky</div>
+            <div class="m-badges"><span class="badge badge-teal">📊 DS Analysis Pending</span></div>
           </div>
-          <div class="meeting-action">
-            <button class="btn btn-outline btn-sm">Status</button>
-          </div>
+          <div class="meeting-action"><button class="btn btn-outline btn-sm">Status</button></div>
         </div>
-
         <div class="meeting-row">
-          <div class="meeting-date-box">
-            <div class="m-month">NOV</div>
-            <div class="m-day">5</div>
-            <div class="m-dow">Wed</div>
-          </div>
+          <div class="meeting-date-box"><div class="m-month">NOV</div><div class="m-day">5</div><div class="m-dow">Wed</div></div>
           <div class="meeting-info">
             <div class="m-name">Matsukiyo Cocokara</div>
             <div class="m-detail">Buyer HQ · Non-Alcohol</div>
-            <div class="m-badges">
-              <span class="badge badge-red">⚠️ Follow-up Required</span>
-            </div>
+            <div class="m-badges"><span class="badge badge-red">⚠️ Follow-up Required</span></div>
           </div>
-          <div class="meeting-action">
-            <button class="btn btn-outline btn-sm">Action</button>
-          </div>
+          <div class="meeting-action"><button class="btn btn-outline btn-sm">Action</button></div>
         </div>
-
       </div>
     </div>
 
-    <!-- Recent Success -->
-    <div class="section-header">
-      <h2>🏆 Recent Success Cases</h2>
-      <span class="see-all" onclick="showPage('knowledge')">View all</span>
-    </div>
+    <div class="section-header"><h2>🏆 Recent Success Cases</h2><span class="see-all" onclick="showPage('knowledge')">View all</span></div>
     <div class="case-card">
-      <div class="case-top">
-        <span class="badge badge-green">Won</span>
-        <span class="badge badge-teal">RTD</span>
-        <span class="badge badge-gray">Drug Store</span>
-      </div>
+      <div class="case-top"><span class="badge badge-green">Won</span><span class="badge badge-teal">RTD</span><span class="badge badge-gray">Drug Store</span></div>
       <h4>Welcia: -196°C Low-ABV Line Listed</h4>
-      <p>"Health × Low-Alcohol" angle. DS-backed POS data and customer segmentation analysis earned high buyer marks.</p>
-      <div class="case-metrics">
-        <div class="metric-item"><strong>+31%</strong>POS 3 months later</div>
-        <div class="metric-item"><strong>3 SKUs</strong>Listed</div>
-      </div>
+      <p>"Health × Low-Alcohol" angle. DS-backed POS data and customer segmentation earned high buyer marks.</p>
+      <div class="case-metrics"><div class="metric-item"><strong>+31%</strong>POS 3 months later</div><div class="metric-item"><strong>3 SKUs</strong>Listed</div></div>
     </div>
-
-  </div><!-- /dashboard -->
+  </div>
 
   <!-- ══════════════════════════════════════ -->
   <!--  PAGE: NEW STRATEGY                   -->
   <!-- ══════════════════════════════════════ -->
   <div class="page" id="page-new-strategy">
-
     <div class="stepper">
       <div class="step done"><div class="step-dot">✓</div><div class="step-label">Enter<br>Details</div></div>
       <div class="step active"><div class="step-dot">2</div><div class="step-label">AI<br>Generate</div></div>
@@ -534,7 +468,6 @@
     <div class="card">
       <div class="card-head"><h3>Meeting Details</h3></div>
       <div class="card-body">
-
         <div class="form-section-title">① Account &amp; Team</div>
         <div class="form-group">
           <label>Account Name<span class="req"> *</span></label>
@@ -551,21 +484,21 @@
         </div>
         <div class="form-group">
           <label>Buyer Contact</label>
-          <input type="text" placeholder="e.g. Mr. Sasaki (Category Buyer)" />
+          <input type="text" id="f-buyer" placeholder="e.g. Mr. Sasaki (Category Buyer)" />
         </div>
         <div class="form-group">
           <label>SUNTORY MD<span class="req"> *</span></label>
-          <select><option>Kenta Tanaka</option><option>Misaki Sato</option><option>Takuya Yamada</option><option>Ichiro Suzuki</option></select>
+          <select id="f-md"><option>Kenta Tanaka</option><option>Misaki Sato</option><option>Takuya Yamada</option><option>Ichiro Suzuki</option></select>
         </div>
         <div class="form-group">
           <label>Assigned DS</label>
-          <select><option>Ayaka Ito</option><option>Seiji Kimura</option><option>Unassigned</option></select>
+          <select id="f-ds"><option>Ayaka Ito</option><option>Seiji Kimura</option><option>Unassigned</option></select>
         </div>
 
         <div class="form-section-title">② Meeting Content</div>
         <div class="form-group">
           <label>Meeting Date<span class="req"> *</span></label>
-          <input type="date" value="2025-10-22" />
+          <input type="date" id="f-date" value="2025-10-22" />
         </div>
         <div class="form-group">
           <label>Meeting Objective<span class="req"> *</span></label>
@@ -590,11 +523,11 @@
         </div>
         <div class="form-group">
           <label>Previous Meeting Notes</label>
-          <textarea placeholder="e.g. Buyer raised concerns about PB expansion. Plan to differentiate via NB value proposition this time."></textarea>
+          <textarea id="f-notes" placeholder="e.g. Buyer raised concerns about PB expansion. Plan to differentiate via NB value proposition."></textarea>
         </div>
         <div class="form-group">
           <label>Account Challenges / Known Needs</label>
-          <textarea placeholder="e.g. Struggling to attract health-conscious shoppers. Interest in expanding non-alcohol and functional beverage range."></textarea>
+          <textarea placeholder="e.g. Struggling to attract health-conscious shoppers. Interest in expanding non-alcohol range."></textarea>
         </div>
 
         <div class="form-section-title">③ Reference Settings</div>
@@ -622,147 +555,132 @@
         <div id="ai-content"></div>
       </div>
       <div class="bottom-action" id="ai-actions" style="display:none;">
-        <button class="btn btn-outline">📋 Copy</button>
-        <button class="btn btn-dark">✅ Confirm &amp; Save</button>
+        <button class="btn btn-outline" onclick="openPdf()">📄 Export PDF</button>
+        <button class="btn btn-dark">✅ Save to Knowledge</button>
       </div>
     </div>
-
-  </div><!-- /new-strategy -->
+  </div>
 
   <!-- ══════════════════════════════════════ -->
-  <!--  PAGE: KNOWLEDGE                      -->
+  <!--  PAGE: KNOWLEDGE (with live search)   -->
   <!-- ══════════════════════════════════════ -->
   <div class="page" id="page-knowledge">
     <div class="search-wrap">
-      <span class="search-icon">🔍</span>
-      <input type="text" placeholder="Search cases (account, category…)" />
+      <span class="s-icon">🔍</span>
+      <input type="text" id="case-search" placeholder="Search by account, category, keyword…" oninput="filterCases()" />
     </div>
-    <div style="display:flex;gap:8px;margin-bottom:14px;overflow-x:auto;scrollbar-width:none;">
-      <span class="badge badge-teal" style="flex-shrink:0;padding:7px 14px;font-size:12px;cursor:pointer;">All</span>
-      <span class="badge badge-gray" style="flex-shrink:0;padding:7px 14px;font-size:12px;cursor:pointer;">Beer</span>
-      <span class="badge badge-gray" style="flex-shrink:0;padding:7px 14px;font-size:12px;cursor:pointer;">RTD</span>
-      <span class="badge badge-gray" style="flex-shrink:0;padding:7px 14px;font-size:12px;cursor:pointer;">Health Bev</span>
-      <span class="badge badge-gray" style="flex-shrink:0;padding:7px 14px;font-size:12px;cursor:pointer;">Coffee</span>
-    </div>
-
-    <div class="case-card">
-      <div class="case-top">
-        <span class="badge badge-green">Won</span>
-        <span class="badge badge-teal">RTD</span>
-        <span class="badge badge-gray">Drug Store</span>
-        <span style="margin-left:auto;font-size:10.5px;color:var(--text-sub);">Aug 10, 2025</span>
-      </div>
-      <h4>Welcia: -196°C Low-ABV Line Listed</h4>
-      <p>"Health × Low-Alcohol" pitch. DS-provided POS data and shopper segmentation co-created with DS team. Won end-cap + 2-facing regular shelf.</p>
-      <div class="case-metrics">
-        <div class="metric-item"><strong>End-cap + Regular</strong>Display Won</div>
-        <div class="metric-item"><strong>+31%</strong>POS (3mo later)</div>
-        <div class="metric-item"><strong>3 SKUs</strong>Listed</div>
-      </div>
+    <div class="filter-pills">
+      <span class="pill active" data-cat="all"      onclick="setPill(this)">All</span>
+      <span class="pill"        data-cat="beer"     onclick="setPill(this)">Beer</span>
+      <span class="pill"        data-cat="rtd"      onclick="setPill(this)">RTD</span>
+      <span class="pill"        data-cat="health"   onclick="setPill(this)">Health Bev</span>
+      <span class="pill"        data-cat="coffee"   onclick="setPill(this)">Coffee</span>
+      <span class="pill"        data-cat="whisky"   onclick="setPill(this)">Whisky</span>
     </div>
 
-    <div class="case-card">
-      <div class="case-top">
-        <span class="badge badge-green">Won</span>
-        <span class="badge badge-teal">Beer</span>
-        <span class="badge badge-gray">Supermarket</span>
-        <span style="margin-left:auto;font-size:10.5px;color:var(--text-sub);">Jun 15, 2025</span>
+    <div id="cases-list">
+      <!-- Each card carries data-* attributes for search -->
+      <div class="case-card" data-cat="rtd" data-text="welcia rtd low-abv low alcohol health functional drug store won listed 196">
+        <div class="case-top"><span class="badge badge-green">Won</span><span class="badge badge-teal">RTD</span><span class="badge badge-gray">Drug Store</span><span style="margin-left:auto;font-size:10.5px;color:var(--text-sub);">Aug 10, 2025</span></div>
+        <h4>Welcia: -196°C Low-ABV Line Listed</h4>
+        <p>"Health × Low-Alcohol" pitch. DS-provided POS data and shopper segmentation co-created with DS team. Won end-cap + 2-facing regular shelf.</p>
+        <div class="case-metrics"><div class="metric-item"><strong>End-cap + Regular</strong>Display Won</div><div class="metric-item"><strong>+31%</strong>POS (3mo later)</div><div class="metric-item"><strong>3 SKUs</strong>Listed</div></div>
       </div>
-      <h4>Aeon Retail: Autumn–Winter Beer Annual Display Secured</h4>
-      <p>Defended against PB expansion with NB brand equity and quality messaging. Weather-correlated sales data leveraged to secure annual budget.</p>
-      <div class="case-metrics">
-        <div class="metric-item"><strong>118%</strong>Achievement Rate</div>
-        <div class="metric-item"><strong>2 End-caps</strong>Display</div>
-      </div>
-    </div>
 
-    <div class="case-card">
-      <div class="case-top">
-        <span class="badge badge-red">Lost</span>
-        <span class="badge badge-teal">Whisky</span>
-        <span class="badge badge-gray">Convenience</span>
-        <span style="margin-left:auto;font-size:10.5px;color:var(--text-sub);">May 20, 2025</span>
+      <div class="case-card" data-cat="beer" data-text="aeon retail beer happoshu supermarket won annual display pb nb year-end seasonal">
+        <div class="case-top"><span class="badge badge-green">Won</span><span class="badge badge-teal">Beer</span><span class="badge badge-gray">Supermarket</span><span style="margin-left:auto;font-size:10.5px;color:var(--text-sub);">Jun 15, 2025</span></div>
+        <h4>Aeon Retail: Autumn–Winter Beer Annual Display Secured</h4>
+        <p>Defended against PB expansion with NB brand equity and quality messaging. Weather-correlated sales data leveraged to secure annual budget.</p>
+        <div class="case-metrics"><div class="metric-item"><strong>118%</strong>Achievement Rate</div><div class="metric-item"><strong>2 End-caps</strong>Display</div></div>
       </div>
-      <h4>7-Eleven: Kaku Highball Can — PB Counter Proposal</h4>
-      <p>Price band clash with PB made value proposition ineffective. Next approach: shift to premium-tier proposal. DS re-analysis in progress.</p>
-      <div class="case-metrics">
-        <div class="metric-item"><strong>Lesson</strong>Price differentiation insufficient</div>
-        <div class="metric-item"><strong>Next</strong>Premium-tier angle</div>
-      </div>
-    </div>
 
-    <div class="case-card">
-      <div class="case-top">
-        <span class="badge badge-green">Won</span>
-        <span class="badge badge-teal">Coffee</span>
-        <span class="badge badge-gray">Drug Store</span>
-        <span style="margin-left:auto;font-size:10.5px;color:var(--text-sub);">Mar 8, 2025</span>
+      <div class="case-card" data-cat="whisky" data-text="7-eleven seven eleven convenience whisky highball kaku pb lost price premium">
+        <div class="case-top"><span class="badge badge-red">Lost</span><span class="badge badge-teal">Whisky</span><span class="badge badge-gray">Convenience</span><span style="margin-left:auto;font-size:10.5px;color:var(--text-sub);">May 20, 2025</span></div>
+        <h4>7-Eleven: Kaku Highball Can — PB Counter Proposal</h4>
+        <p>Price band clash with PB made value proposition ineffective. Next approach: shift to premium-tier proposal. DS re-analysis in progress.</p>
+        <div class="case-metrics"><div class="metric-item"><strong>Lesson</strong>Price differentiation insufficient</div><div class="metric-item"><strong>Next</strong>Premium-tier angle</div></div>
       </div>
-      <h4>Matsukiyo Cocokara: BOSS Functional Proposition Listed</h4>
-      <p>"Energy support for working adults" angle. DS analysis identified overlap between health-conscious shoppers and working-age demographic. All 4 SKUs listed.</p>
-      <div class="case-metrics">
-        <div class="metric-item"><strong>4 SKUs</strong>Listed</div>
-        <div class="metric-item"><strong>+23%</strong>POS (3mo later)</div>
+
+      <div class="case-card" data-cat="coffee" data-text="matsukiyo cocokara drug store coffee boss functional health working adults listed sku">
+        <div class="case-top"><span class="badge badge-green">Won</span><span class="badge badge-teal">Coffee</span><span class="badge badge-gray">Drug Store</span><span style="margin-left:auto;font-size:10.5px;color:var(--text-sub);">Mar 8, 2025</span></div>
+        <h4>Matsukiyo Cocokara: BOSS Functional Proposition Listed</h4>
+        <p>"Energy support for working adults" angle. DS analysis identified overlap between health-conscious shoppers and working-age demographic. All 4 SKUs listed.</p>
+        <div class="case-metrics"><div class="metric-item"><strong>4 SKUs</strong>Listed</div><div class="metric-item"><strong>+23%</strong>POS (3mo later)</div></div>
+      </div>
+
+      <div class="case-card" data-cat="health" data-text="sundrug sundrag non-alcohol iyemon tea water health functional shelf reset drug store won listing">
+        <div class="case-top"><span class="badge badge-green">Won</span><span class="badge badge-teal">Health Bev</span><span class="badge badge-gray">Drug Store</span><span style="margin-left:auto;font-size:10.5px;color:var(--text-sub);">Feb 14, 2025</span></div>
+        <h4>Sundrug: Iyemon Tokucha Functional Tea Listing</h4>
+        <p>Positioned Iyemon Tokucha as a diet-support SKU ahead of planogram reset. DS confirmed 34% of Sundrug shoppers actively seek functional foods. 2 SKUs listed nation-wide.</p>
+        <div class="case-metrics"><div class="metric-item"><strong>2 SKUs</strong>Nation-wide</div><div class="metric-item"><strong>+28%</strong>POS (3mo later)</div></div>
+      </div>
+
+      <div class="case-card" data-cat="rtd" data-text="ito yokado supermarket rtd chuhai cocktail seasonal promotion limited summer won endcap">
+        <div class="case-top"><span class="badge badge-green">Won</span><span class="badge badge-teal">RTD</span><span class="badge badge-gray">Supermarket</span><span style="margin-left:auto;font-size:10.5px;color:var(--text-sub);">Jan 20, 2025</span></div>
+        <h4>Ito-Yokado: Summer RTD End-Cap Promotion</h4>
+        <p>Pitched summer chuhai lineup with category-level basket analysis showing RTD cross-purchase with barbecue foods. Secured 3-month end-cap for 6 SKUs.</p>
+        <div class="case-metrics"><div class="metric-item"><strong>6 SKUs</strong>End-cap (3 mo)</div><div class="metric-item"><strong>+41%</strong>Seasonal uplift</div></div>
+      </div>
+
+      <div class="case-card" data-cat="beer" data-text="sugi pharmacy drug store beer happoshu lost pb private brand price budget">
+        <div class="case-top"><span class="badge badge-red">Lost</span><span class="badge badge-teal">Beer</span><span class="badge badge-gray">Drug Store</span><span style="margin-left:auto;font-size:10.5px;color:var(--text-sub);">Dec 5, 2024</span></div>
+        <h4>Sugi Pharmacy: Beer NB Listing vs PB Expansion</h4>
+        <p>Buyer prioritised PB expansion to improve margin. NB brand story was not sufficient to counter budget pressure. Revisit with premium-tier and gift bundle proposal.</p>
+        <div class="case-metrics"><div class="metric-item"><strong>Lesson</strong>Margin story needed</div><div class="metric-item"><strong>Next</strong>Bundle/gift angle</div></div>
+      </div>
+
+      <div class="case-card" data-cat="health" data-text="welcia health water tennensui mineral natural water health conscious listing won nationwide">
+        <div class="case-top"><span class="badge badge-green">Won</span><span class="badge badge-teal">Health Bev</span><span class="badge badge-gray">Drug Store</span><span style="margin-left:auto;font-size:10.5px;color:var(--text-sub);">Nov 12, 2024</span></div>
+        <h4>Welcia: Tennensui Mineral Water Nationwide Listing</h4>
+        <p>Leveraged shopper health trend data showing 47% of Welcia customers buy bottled water monthly. Secured nation-wide listing across 1,200+ stores.</p>
+        <div class="case-metrics"><div class="metric-item"><strong>1,200+ stores</strong>Nation-wide</div><div class="metric-item"><strong>+17%</strong>Category share</div></div>
       </div>
     </div>
-  </div><!-- /knowledge -->
+    <div class="no-results" id="no-results">
+      <div class="nr-icon">🔍</div>
+      <div>No cases match your search.<br>Try different keywords or clear the filter.</div>
+    </div>
+  </div>
 
   <!-- ══════════════════════════════════════ -->
   <!--  PAGE: ANALYTICS (DS Reports)         -->
   <!-- ══════════════════════════════════════ -->
   <div class="page" id="page-analytics">
     <div class="alert alert-teal" style="margin-bottom:16px;">
-      <span class="alert-icon">📊</span>
-      <span>DS (Data Scientist) analysis reports are summarized here for MD team visibility.</span>
+      <span style="font-size:15px;flex-shrink:0;">📊</span>
+      <span>DS (Data Scientist) analysis reports summarized for MD visibility.</span>
     </div>
     <div class="section-header">
       <h2>DS Analysis Reports</h2>
-      <button class="btn btn-sm btn-primary">+ Request</button>
+      <button class="btn btn-sm btn-primary" onclick="openDsModal()">+ Request</button>
     </div>
 
     <div class="report-row">
       <div class="r-title">Kanto RTD Market Trends (Oct 2025)</div>
       <div class="r-sub">Low-ABV Gen Z penetration analysis, competitor share breakdown</div>
-      <div class="r-meta">
-        <span class="badge badge-green">Published</span>
-        <span class="badge badge-gray">A. Ito</span>
-        <span class="badge badge-teal">RTD</span>
-        <span style="font-size:11px;color:var(--text-sub);">Oct 15</span>
-      </div>
+      <div class="r-meta"><span class="badge badge-green">Published</span><span class="badge badge-gray">A. Ito</span><span class="badge badge-teal">RTD</span><span style="font-size:11px;color:var(--text-sub);">Oct 15</span></div>
     </div>
-
     <div class="report-row">
       <div class="r-title">Drug Store Health Beverage Trends (Sep 2025)</div>
       <div class="r-sub">Shelf reset timing, competitive landscape, recommended proposal window</div>
-      <div class="r-meta">
-        <span class="badge badge-green">Published</span>
-        <span class="badge badge-gray">A. Ito</span>
-        <span class="badge badge-teal">Health Bev</span>
-        <span style="font-size:11px;color:var(--text-sub);">Sep 28</span>
-      </div>
+      <div class="r-meta"><span class="badge badge-green">Published</span><span class="badge badge-gray">A. Ito</span><span class="badge badge-teal">Health Bev</span><span style="font-size:11px;color:var(--text-sub);">Sep 28</span></div>
     </div>
-
     <div class="report-row">
       <div class="r-title">Aeon Group PB vs NB Competitive Analysis (Aug 2025)</div>
       <div class="r-sub">Price tier, share analysis, NB defense strategy by category</div>
-      <div class="r-meta">
-        <span class="badge badge-green">Published</span>
-        <span class="badge badge-gray">S. Kimura</span>
-        <span class="badge badge-teal">Beer · RTD</span>
-        <span style="font-size:11px;color:var(--text-sub);">Aug 30</span>
-      </div>
+      <div class="r-meta"><span class="badge badge-green">Published</span><span class="badge badge-gray">S. Kimura</span><span class="badge badge-teal">Beer · RTD</span><span style="font-size:11px;color:var(--text-sub);">Aug 30</span></div>
     </div>
-
     <div class="report-row">
       <div class="r-title">Whisky Market Premiumization Analysis (Nov 2025 — Planned)</div>
       <div class="r-sub">Price tier redesign for convenience &amp; specialty retail channels</div>
-      <div class="r-meta">
-        <span class="badge badge-gold">🔄 In Progress</span>
-        <span class="badge badge-gray">S. Kimura</span>
-        <span class="badge badge-teal">Whisky</span>
-      </div>
+      <div class="r-meta"><span class="badge badge-gold">🔄 In Progress</span><span class="badge badge-gray">S. Kimura</span><span class="badge badge-teal">Whisky</span></div>
     </div>
-  </div><!-- /analytics -->
+    <div class="report-row" id="new-report-placeholder" style="display:none;">
+      <div class="r-title" id="new-report-title">—</div>
+      <div class="r-sub"  id="new-report-sub">—</div>
+      <div class="r-meta"><span class="badge badge-gold">⏳ Requested</span><span class="badge badge-gray" id="new-report-ds">—</span><span class="badge badge-teal" id="new-report-cat">—</span></div>
+    </div>
+  </div>
 
   <!-- ══════════════════════════════════════ -->
   <!--  PAGE: PROFILE                        -->
@@ -781,51 +699,131 @@
     <div class="card">
       <div class="card-head"><h3>Settings</h3></div>
       <div class="card-body">
-        <div class="form-group">
-          <label>AI Model</label>
-          <select><option>GPT-4o (Azure OpenAI)</option><option>GPT-4 Turbo</option></select>
-        </div>
-        <div class="form-group">
-          <label>DS Insight Notifications</label>
-          <select><option>Instant</option><option>Daily Digest</option><option>Weekly Summary</option></select>
-        </div>
-        <div class="form-group">
-          <label>Assigned Region</label>
-          <select><option>Kanto</option><option>Tokai</option><option>Kansai</option><option>Nationwide</option></select>
-        </div>
+        <div class="form-group"><label>AI Model</label><select><option>GPT-4o (Azure OpenAI)</option><option>GPT-4 Turbo</option></select></div>
+        <div class="form-group"><label>DS Insight Notifications</label><select><option>Instant</option><option>Daily Digest</option><option>Weekly Summary</option></select></div>
+        <div class="form-group"><label>Assigned Region</label><select><option>Kanto</option><option>Tokai</option><option>Kansai</option><option>Nationwide</option></select></div>
         <button class="btn btn-primary btn-full" style="margin-top:8px;">Save Settings</button>
       </div>
     </div>
-  </div><!-- /profile -->
+  </div>
 
 </main>
 
 <!-- ═══ BOTTOM NAV ═══ -->
 <nav id="bottom-nav">
-  <div class="nav-item active" id="nav-dashboard" onclick="showPage('dashboard')">
-    <div class="nav-icon-wrap"><div class="nav-icon">🏠</div></div>
-    <div>Home</div>
-  </div>
-  <div class="nav-item" id="nav-new-strategy" onclick="showPage('new-strategy')">
-    <div class="nav-icon-wrap"><div class="nav-icon">✨</div></div>
-    <div>Strategy</div>
-  </div>
-  <div class="nav-item" id="nav-knowledge" onclick="showPage('knowledge')">
-    <div class="nav-icon-wrap"><div class="nav-icon">📚</div></div>
-    <div>Cases</div>
-  </div>
-  <div class="nav-item" id="nav-analytics" onclick="showPage('analytics')">
-    <div class="nav-icon-wrap"><div class="nav-icon">📊</div></div>
-    <div>DS Reports</div>
-  </div>
-  <div class="nav-item" id="nav-profile" onclick="showPage('profile')">
-    <div class="nav-icon-wrap"><div class="nav-icon">👤</div></div>
-    <div>Profile</div>
-  </div>
+  <div class="nav-item active" id="nav-dashboard"    onclick="showPage('dashboard')"><div class="nav-icon-wrap"><div class="nav-icon">🏠</div></div><div>Home</div></div>
+  <div class="nav-item"        id="nav-new-strategy" onclick="showPage('new-strategy')"><div class="nav-icon-wrap"><div class="nav-icon">✨</div></div><div>Strategy</div></div>
+  <div class="nav-item"        id="nav-knowledge"    onclick="showPage('knowledge')"><div class="nav-icon-wrap"><div class="nav-icon">📚</div></div><div>Cases</div></div>
+  <div class="nav-item"        id="nav-analytics"    onclick="showPage('analytics')"><div class="nav-icon-wrap"><div class="nav-icon">📊</div></div><div>DS Reports</div></div>
+  <div class="nav-item"        id="nav-profile"      onclick="showPage('profile')"><div class="nav-icon-wrap"><div class="nav-icon">👤</div></div><div>Profile</div></div>
 </nav>
 
+<!-- ═══════════════════════════════════════════
+     MODAL: DS Analysis Request
+     ═══════════════════════════════════════════ -->
+<div class="modal-overlay" id="ds-modal" onclick="closeDsModalOutside(event)">
+  <div class="modal-sheet">
+    <div class="modal-drag"></div>
+    <div class="modal-header">
+      <h2>📊 Request DS Analysis</h2>
+      <button class="modal-close" onclick="closeDsModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="alert alert-teal" style="margin-bottom:16px;">
+        <span style="font-size:15px;flex-shrink:0;">💡</span>
+        <span>Describe what insights you need. The DS team will be notified and aim to deliver within 5 business days.</span>
+      </div>
+      <div class="form-group">
+        <label>Analysis Title<span class="req"> *</span></label>
+        <input type="text" id="req-title" placeholder="e.g. Kanto Whisky Market Trend Analysis" />
+      </div>
+      <div class="form-group">
+        <label>Target Category<span class="req"> *</span></label>
+        <select id="req-category">
+          <option value="">Select category</option>
+          <option>Beer &amp; Happoshu</option>
+          <option>RTD (Chuhai &amp; Cocktails)</option>
+          <option>Whisky &amp; Highball</option>
+          <option>Non-Alcohol &amp; Health Beverages</option>
+          <option>Coffee (BOSS)</option>
+          <option>Water &amp; Tea</option>
+          <option>Cross-category</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Target Channel</label>
+        <select id="req-channel">
+          <option>All Channels</option>
+          <option>Supermarket</option>
+          <option>Drug Store</option>
+          <option>Convenience</option>
+          <option>e-Commerce</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Assigned DS</label>
+        <select id="req-ds">
+          <option>Ayaka Ito</option>
+          <option>Seiji Kimura</option>
+          <option>Auto-assign</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Desired Delivery Date</label>
+        <input type="date" id="req-deadline" />
+      </div>
+      <div class="form-group">
+        <label>Background &amp; Key Questions<span class="req"> *</span></label>
+        <textarea id="req-notes" placeholder="e.g. We have an upcoming meeting with 7-Eleven regarding whisky. Need to understand premium-tier growth trend and competitor SKU gaps to build our pitch." style="min-height:110px;"></textarea>
+      </div>
+      <div class="form-group">
+        <label>Data Sources Preferred</label>
+        <select>
+          <option>Internal POS data + Panel data</option>
+          <option>Internal POS only</option>
+          <option>Third-party panel data only</option>
+          <option>DS to decide</option>
+        </select>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" onclick="closeDsModal()">Cancel</button>
+      <button class="btn btn-primary" onclick="submitDsRequest()">📤 Submit Request</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SUCCESS TOAST
+     ═══════════════════════════════════════════ -->
+<div id="toast" style="
+  position:fixed; bottom:calc(var(--nav-h) + env(safe-area-inset-bottom) + 16px); left:50%;
+  transform:translateX(-50%) translateY(20px); background:var(--teal-deep); color:#fff;
+  padding:12px 20px; border-radius:12px; font-size:13px; font-weight:700;
+  white-space:nowrap; z-index:800; opacity:0; transition:all .3s; pointer-events:none;
+  box-shadow:0 4px 20px rgba(0,0,0,.25);
+"></div>
+
+<!-- ═══════════════════════════════════════════
+     PDF PROPOSAL OVERLAY
+     ═══════════════════════════════════════════ -->
+<div id="pdf-overlay" onclick="closePdfOutside(event)">
+  <div id="pdf-container">
+    <div id="pdf-toolbar">
+      <h3>📄 Proposal Document Preview</h3>
+      <div id="pdf-toolbar-btns">
+        <button class="btn btn-outline btn-sm" style="color:#fff;border-color:rgba(255,255,255,.5);" onclick="window.print()">🖨 Print / Save PDF</button>
+        <button class="btn btn-sm" style="background:rgba(255,255,255,.15);color:#fff;" onclick="closePdf()">✕ Close</button>
+      </div>
+    </div>
+    <div id="pdf-doc"><!-- filled by JS --></div>
+  </div>
+</div>
+
 <script>
-/* ─── Page Navigation ─── */
+/* ═══════════════════════════════════
+   NAVIGATION
+   ═══════════════════════════════════ */
 function showPage(id) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
@@ -840,7 +838,11 @@ function showPage(id) {
   }
 }
 
-/* ─── Load demo from dashboard ─── */
+/* ═══════════════════════════════════
+   STRATEGY GENERATION
+   ═══════════════════════════════════ */
+var _lastStrategy = {};
+
 function loadDemo() {
   showPage('new-strategy');
   setTimeout(() => {
@@ -852,11 +854,15 @@ function loadDemo() {
   }, 250);
 }
 
-/* ─── AI Strategy Generation ─── */
 function generateStrategy() {
   const account  = document.getElementById('f-account').value  || 'Aeon Retail Co., Ltd.';
   const category = document.getElementById('f-category').value || 'Beer & Happoshu';
   const purpose  = document.getElementById('f-purpose').value  || 'Regular Listing Proposal';
+  const md       = document.getElementById('f-md').value;
+  const ds       = document.getElementById('f-ds').value;
+  const date     = document.getElementById('f-date').value;
+
+  _lastStrategy = { account, category, purpose, md, ds, date };
 
   const result = document.getElementById('ai-result');
   result.classList.add('show');
@@ -864,37 +870,33 @@ function generateStrategy() {
   document.getElementById('ai-content').innerHTML = `
     <div class="spinner">
       <div class="spin-icon">⚙️</div>
-      <div class="spin-text">Scanning 32 past cases and 2 DS reports to build your strategy…</div>
+      <div class="spin-text">Scanning 32 past cases and 2 DS reports…</div>
     </div>`;
 
   const fill = document.getElementById('loading-fill');
   fill.style.width = '0';
   setTimeout(() => { fill.style.width = '100%'; }, 80);
   setTimeout(() => result.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
-
   setTimeout(() => {
-    document.getElementById('ai-content').innerHTML = buildStrategy(account, category, purpose);
+    document.getElementById('ai-content').innerHTML = buildStrategyHTML(account, category, purpose);
     document.getElementById('ai-actions').style.display = 'flex';
   }, 1800);
 }
 
-function buildStrategy(account, category, purpose) {
+function buildStrategyHTML(account, category, purpose) {
   return `
     <div style="font-size:11.5px;color:var(--text-sub);margin-bottom:14px;padding:8px 12px;background:var(--teal-pale);border-radius:8px;">
       <strong>${account}</strong> &nbsp;/&nbsp; ${category} &nbsp;/&nbsp; ${purpose}
       <br><span style="color:var(--teal-dark);">References: 32 past cases · 2 DS reports</span>
     </div>
-
     <div class="strategy-block">
       <h4>🔍 DS Insight (Auto-Referenced)</h4>
       <p>Beer category in Kanto supermarkets continues to face PB expansion pressure. Differentiation via NB brand equity and quality assurance is effective. Year-end seasonal limited-time proposals have high receptivity at this time of year.</p>
     </div>
-
     <div class="strategy-block gold">
       <h4>🎯 Meeting Goal</h4>
       <p>Secure limited-time year-end display (Dec–Jan) and establish NB brand value against PB. Target: 1 end-cap + 2-facing regular shelf placement.</p>
     </div>
-
     <div class="strategy-block">
       <h4>💡 Pitch Hooks</h4>
       <ul>
@@ -903,7 +905,6 @@ function buildStrategy(account, category, purpose) {
         <li><strong>Category-level story:</strong> Present PB + NB coexistence as a shopper basket uplift strategy</li>
       </ul>
     </div>
-
     <div class="strategy-block green">
       <h4>📊 Supporting Data &amp; Evidence</h4>
       <ul>
@@ -912,26 +913,196 @@ function buildStrategy(account, category, purpose) {
         <li>Similar win: Oct 2024 Aeon Tokai — annual display secured, 122% achievement rate</li>
       </ul>
     </div>
-
     <div class="strategy-block red">
       <h4>⚠️ Anticipated Objections &amp; Counters</h4>
       <ul>
-        <li><strong>"PB-first policy":</strong> Use category-wide basket uplift data to position PB + NB coexistence as growth lever</li>
-        <li><strong>"Price sensitivity":</strong> Avoid mass-price framing; use "limited edition" and "premium" labels to differentiate</li>
+        <li><strong>"PB-first policy":</strong> Use category-wide basket uplift data to show PB + NB coexistence grows revenue</li>
+        <li><strong>"Price sensitivity":</strong> Frame as "limited edition" and "premium seasonal" to avoid direct price comparison</li>
       </ul>
     </div>
-
     <div class="strategy-block">
       <h4>📋 Recommended Agenda (35 min)</h4>
       <ul>
         <li>① Previous meeting follow-up &amp; performance recap (3 min)</li>
-        <li>② Market data presentation (DS report highlights) (7 min)</li>
+        <li>② Market data presentation — DS report highlights (7 min)</li>
         <li>③ Proposal: display plan, promo calendar, budget outline (10 min)</li>
         <li>④ Terms alignment: volume, delivery, co-investment (10 min)</li>
         <li>⑤ Close: confirm next steps &amp; decision timeline (5 min)</li>
       </ul>
+    </div>`;
+}
+
+/* ═══════════════════════════════════
+   PDF EXPORT
+   ═══════════════════════════════════ */
+function openPdf() {
+  const s = _lastStrategy;
+  const today = new Date().toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' });
+  document.getElementById('pdf-doc').innerHTML = `
+    <div class="pdf-cover">
+      <div class="pdf-logo">SUN<span>TORY</span></div>
+      <div class="pdf-tag">Sales Strategy Proposal · Confidential</div>
+      <h1>Account Proposal:<br>${s.account || 'Account Name'}</h1>
+      <div class="pdf-meta">
+        <strong>Category:</strong> ${s.category || '—'}<br>
+        <strong>Objective:</strong> ${s.purpose || '—'}<br>
+        <strong>Meeting Date:</strong> ${s.date || '—'}<br>
+        <strong>MD:</strong> ${s.md || 'Kenta Tanaka'}&nbsp;&nbsp;&nbsp;<strong>DS:</strong> ${s.ds || 'Ayaka Ito'}<br>
+        <strong>Prepared:</strong> ${today}
+      </div>
     </div>
-  `;
+
+    <div class="pdf-section">
+      <div class="pdf-section-title">1. DS Insight — Market Context</div>
+      <div class="pdf-block">
+        <h4>Auto-Referenced from DS Report</h4>
+        <p>Beer category in Kanto supermarkets continues to face PB expansion pressure. Differentiation via NB brand equity and quality assurance is effective. Year-end seasonal limited-time proposals have high receptivity at this time of year.</p>
+      </div>
+    </div>
+
+    <div class="pdf-section">
+      <div class="pdf-section-title">2. Meeting Goal</div>
+      <div class="pdf-block gold">
+        <h4>Objective</h4>
+        <p>Secure limited-time year-end display (Dec–Jan) and establish NB brand value against PB. Target: 1 end-cap + 2-facing regular shelf placement.</p>
+      </div>
+    </div>
+
+    <div class="pdf-section">
+      <div class="pdf-section-title">3. Pitch Hooks &amp; Key Messages</div>
+      <div class="pdf-block">
+        <h4>Recommended Angles</h4>
+        <ul>
+          <li><strong>Year-end demand × premium experience:</strong> Highlight NB value for family and gift purchase occasions</li>
+          <li><strong>Leverage past data:</strong> Our products outperformed competition by +18% YoY in same period last year</li>
+          <li><strong>Category-level story:</strong> Present PB + NB coexistence as a shopper basket uplift strategy</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pdf-section">
+      <div class="pdf-section-title">4. Supporting Data &amp; Evidence</div>
+      <div class="pdf-block green">
+        <h4>Data Points</h4>
+        <ul>
+          <li>Our beer portfolio: Kanto supermarkets, last 3 months +8.2% YoY</li>
+          <li>Competitor PB share: 22.4% (+2.1pt YoY) → NB defense is urgent</li>
+          <li>Similar win: Oct 2024 Aeon Tokai — annual display secured, 122% achievement rate</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pdf-section">
+      <div class="pdf-section-title">5. Anticipated Objections &amp; Responses</div>
+      <div class="pdf-block red">
+        <h4>Objection Handling</h4>
+        <ul>
+          <li><strong>"PB-first policy":</strong> Use category-wide basket uplift data to show PB + NB coexistence grows total revenue</li>
+          <li><strong>"Price sensitivity":</strong> Frame as "limited edition" / "premium seasonal" to avoid direct price comparison</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pdf-section">
+      <div class="pdf-section-title">6. Recommended Meeting Agenda (35 min)</div>
+      <div class="pdf-block">
+        <h4>Flow</h4>
+        <ul>
+          <li>① Previous meeting follow-up &amp; performance recap — 3 min</li>
+          <li>② Market data presentation (DS report highlights) — 7 min</li>
+          <li>③ Proposal: display plan, promo calendar, budget outline — 10 min</li>
+          <li>④ Terms alignment: volume, delivery, co-investment — 10 min</li>
+          <li>⑤ Close: confirm next steps &amp; decision timeline — 5 min</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pdf-footer">
+      <span>SUNTORY Holdings Ltd. — National Accounts Division</span>
+      <span>Generated by MD Sales Strategy Planner · Azure AI · ${today}</span>
+    </div>`;
+
+  document.getElementById('pdf-overlay').classList.add('open');
+}
+
+function closePdf() { document.getElementById('pdf-overlay').classList.remove('open'); }
+function closePdfOutside(e) { if (e.target === document.getElementById('pdf-overlay')) closePdf(); }
+
+/* ═══════════════════════════════════
+   DS REQUEST MODAL
+   ═══════════════════════════════════ */
+function openDsModal() { document.getElementById('ds-modal').classList.add('open'); }
+function closeDsModal() { document.getElementById('ds-modal').classList.remove('open'); }
+function closeDsModalOutside(e) { if (e.target === document.getElementById('ds-modal')) closeDsModal(); }
+
+function submitDsRequest() {
+  const title   = document.getElementById('req-title').value.trim();
+  const cat     = document.getElementById('req-category').value;
+  const ds      = document.getElementById('req-ds').value;
+  const notes   = document.getElementById('req-notes').value.trim();
+
+  if (!title || !cat || !notes) {
+    showToast('⚠️ Please fill in required fields');
+    return;
+  }
+
+  // Update the placeholder row in the reports list
+  document.getElementById('new-report-title').textContent = title;
+  document.getElementById('new-report-sub').textContent   = notes.slice(0, 80) + (notes.length > 80 ? '…' : '');
+  document.getElementById('new-report-ds').textContent    = ds;
+  document.getElementById('new-report-cat').textContent   = cat;
+  document.getElementById('new-report-placeholder').style.display = 'block';
+
+  closeDsModal();
+
+  // Clear form
+  ['req-title','req-notes'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('req-category').value = '';
+
+  showToast('✅ Analysis request submitted to DS team!');
+}
+
+/* ═══════════════════════════════════
+   CASE SEARCH & FILTER
+   ═══════════════════════════════════ */
+var _activeCat = 'all';
+
+function setPill(el) {
+  document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+  el.classList.add('active');
+  _activeCat = el.dataset.cat;
+  filterCases();
+}
+
+function filterCases() {
+  const query = document.getElementById('case-search').value.toLowerCase().trim();
+  const cards = document.querySelectorAll('#cases-list .case-card');
+  let visible = 0;
+
+  cards.forEach(card => {
+    const catMatch  = _activeCat === 'all' || card.dataset.cat === _activeCat;
+    const textMatch = !query || card.dataset.text.includes(query) ||
+                      card.innerText.toLowerCase().includes(query);
+    const show = catMatch && textMatch;
+    card.classList.toggle('hidden', !show);
+    if (show) visible++;
+  });
+
+  document.getElementById('no-results').style.display = visible === 0 ? 'block' : 'none';
+}
+
+/* ═══════════════════════════════════
+   TOAST
+   ═══════════════════════════════════ */
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.style.opacity = '1';
+  t.style.transform = 'translateX(-50%) translateY(0)';
+  setTimeout(() => {
+    t.style.opacity = '0';
+    t.style.transform = 'translateX(-50%) translateY(20px)';
+  }, 3000);
 }
 </script>
 </body>
